@@ -5,7 +5,8 @@
 insert(Key, Value) ->
 	case sc_store:lookup(Key) of
 		{ok, Pid} ->
-			sc_element:replace(Pid, Value);
+			sc_element:replace(Pid, Value),
+			sc_event:replace(Key, Value);
 		{error, _} ->
 			{ok, Pid} = sc_element:create(Value),
 			sc_store:insert(Key, Pid),
