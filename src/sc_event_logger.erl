@@ -2,7 +2,15 @@
 
 -behavior(gen_event).
 
--export([add_handler/0, delete_handler/0, handle_event/2]).
+-export([add_handler/0, delete_handler/0]).
+
+-export([init/1, handle_event/2, handle_call/2,
+		handle_info/2, terminate/2, code_change/3]).
+
+-record(state, {}).
+
+init([]) ->
+	{ok, #state{}}.
 
 add_handler() ->
 	sc_event:add_handler(?MODULE, []).
@@ -24,6 +32,17 @@ handle_event({delete, Key}, State) ->
 
 handle_event({replace, {Key, Value}}, State) ->
 	error_logger:info_msg("replace(~w, ~w)~n", [Key, Value]),
-	{ok, State};
+	{ok, State}.
 
+handle_call(_Request, State) ->
+	Reply = ok,
+	{ok, Reply, State}.
 
+handle_info(_Info, State) ->
+	{ok, State}.
+
+terminate(_Reason, _State) ->
+	ok.
+
+code_change(_OldVsn, State, _Extra) ->
+	{ok, State}.
