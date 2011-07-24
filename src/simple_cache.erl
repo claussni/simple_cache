@@ -16,6 +16,7 @@ lookup(Key) ->
 	try
 		{ok, Pid} = sc_store:lookup(Key),
 		{ok, Value} = sc_element:fetch(Pid),
+		sc_event:lookup(Key),
 		{ok, Value}
 	catch
 		_Class:_Exception ->
