@@ -26,7 +26,8 @@ lookup(Key) ->
 delete(Key) ->
 	case sc_store:lookup(Key) of
 		{ok, Pid} ->
-			sc_element:delete(Pid);
+			sc_element:delete(Pid),
+			sc_event:delete(Pid);
 		{error, _Reason} ->
 			ok
 	end.
