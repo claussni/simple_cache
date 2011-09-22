@@ -12,7 +12,7 @@
 			simple_cache
 	]},
 	{registered, [sc_sup]},
-	{applications, [kernel, stdlib, sasl, stdlib, mnesia]},
+	{applications, [kernel, stdlib, sasl, stdlib, mnesia, resource_discovery]},
 	{mod, {sc_app, []}}
 ]}.
 
