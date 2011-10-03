@@ -32,11 +32,11 @@ get({http_request, 'GET', {abs_path, <<"/", Key/bytes>>}, _}, _Head, _UserData) 
             gen_web_server:http_reply(404, "Key not found.")
     end.
 
-delete({http_request, 'DELETE', {abs_path, <<"/", Key/bytes>>}, _,} _Head, _UserData) ->
+delete({http_request, 'DELETE', {abs_path, <<"/", Key/bytes>>}, _}, _Head, _UserData) ->
     simple_cache:delete(Key),
     gen_web_server:http_reply(204).
 
-put({http_request, 'PUT', {abs_path, <<"/", Key/bytes>>}, _,} _Head, Body, _UserData) ->
+put({http_request, 'PUT', {abs_path, <<"/", Key/bytes>>}, _}, _Head, Body, _UserData) ->
     simple_cache:insert(Key, Body),
     gen_web_server:http_reply(201).
 
