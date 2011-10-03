@@ -14,7 +14,7 @@ stop(_State) ->
     ok.
 
 get_port(DefaultPort) ->
-    case application:get_env(tcp_interface, port) of
+    case application:get_env(http_interface, port) of
         {ok, P}     -> P;
         undefined   -> DefaultPort 
     end.
