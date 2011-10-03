@@ -20,5 +20,5 @@ get_port(DefaultPort) ->
     end.
 
 start_supervisor(Port) ->
-    {ok, _Pid} = ti_sup:start_link(Port).
+    {ok, _Pid} = hi_sup:start_link(Port).
 
