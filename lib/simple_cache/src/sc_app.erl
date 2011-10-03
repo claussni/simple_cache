@@ -26,7 +26,7 @@ stop(_State) ->
 ensure_contact() ->
     case application:get_env(simple_cache, contact_nodes) of
         undefined ->
-            ensure_contact(node());
+            ensure_contact([node()]);
         {ok, ContactNodes} ->
             ensure_contact(ContactNodes)
     end.
