@@ -1,6 +1,6 @@
 -module(gws_connection_sup).
 
--behavior(supervisor).
+-behaviour(supervisor).
 
 -export([start_link/4, start_child/1]).
 
