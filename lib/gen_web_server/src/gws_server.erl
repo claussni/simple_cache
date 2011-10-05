@@ -45,6 +45,9 @@ handle_info({http, _Sock, {http_request, _, _, _} = Request}, State) ->
 handle_info({http, _Sock, {http_request, _, Name, _, Value}}, State) ->
     inet:setopts(State#state.socket, [{active, once}]),
     {noreply, header(Name, Value, State)};
+handle_info({http, _Sock, {http_header, _, Name, _, Value}}, State) ->
+    inet:setopts(State#state.socket, [{active, once}]),
+    {noreply, header(Name, Value, State)};
 handle_info({http, _Sock, http_eoh}, #state{content_remaining = 0} = State) ->
     {stop, normal, handle_http_request(State)};
 handle_info({http, _Sock, http_eoh}, State) ->
