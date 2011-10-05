@@ -8,9 +8,9 @@
     http_reply/3
 ]).
 
--export([behavior_info/1]).
+-export([behaviour_info/1]).
 
-behavior_info(callbacks) ->
+behaviour_info(callbacks) ->
     [{init, 1},
      {head, 3},
      {get, 3},
@@ -21,7 +21,7 @@ behavior_info(callbacks) ->
      {trace, 4},
      {other_methods, 4}
     ];
-behavior_info(_Other) ->
+behaviour_info(_Other) ->
     undefined.
 
 start_link(Callback, Port, UserArgs) ->
